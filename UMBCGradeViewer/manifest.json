@@ -1,0 +1,44 @@
+{
+    "manifest_version": 3,
+    "name": "UMBC — Grade Viewer",
+    "description": "Provides unweighted, estimate grades in enrolled courses.",
+    "version": "1.0.3",
+    "icons": {
+        "16": "/assets/icon16.png",
+        "48": "/assets/icon48.png",
+        "64": "/assets/icon64.png"
+    },
+    "action" : {
+        "default_icon": {
+            "16": "/assets/icon16.png",
+            "48": "/assets/icon48.png",
+            "64": "/assets/icon64.png"
+        },
+        "default_title": "UMBC - Grade Viewer",
+        "default_popup": "/index.html"
+    },
+    "content_scripts": [
+        {
+            "matches": ["*://blackboard.umbc.edu/ultra/*"],
+            "js": ["/js/init.js"],
+            "run_at": "document_start"
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "matches": ["*://blackboard.umbc.edu/*"],
+            "resources": ["/js/lib/BlackboardAPI.js"]
+        },
+        {
+            "matches": ["*://blackboard.umbc.edu/*"],
+            "resources": ["/js/lib/LMSBridge.js"]
+        },
+        {
+            "matches": ["*://blackboard.umbc.edu/*"],
+            "resources": ["/js/main.js"]
+        }
+    ],
+    "host_permissions": [
+        "*://blackboard.umbc.edu/ultra/grades"
+    ]
+}
